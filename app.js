@@ -74,7 +74,7 @@ document.getElementById('adminLoginForm').addEventListener('submit', async (e) =
   const password = document.getElementById('adminPassword').value;
 
   try {
-    const res = await fetch(`${API_BASE}/adminlogin`, {
+    const res = await fetch(`${API_BASE}/adminLogin`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
