@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Customer Support Ticketing System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Customer Support Ticketing System</h1>
+  <div class="view-toggle">
+    <button id="btnCustomerView" class="active">Customer View</button>
+    <button id="btnAdminView">Admin</button>
+  </div>
+</header>
+
+<!-- CUSTOMER VIEW -->
+<section id="customerView">
+  <div class="customer-top-row">
+    <div class="panel">
+      <h2>Submit a New Ticket</h2>
+      <form id="ticketForm">
+        <label>Your Customer ID (demo: use cust-1 or cust-2)</label>
+        <input type="text" id="customerId" required>
+
+        <label>Subject</label>
+        <input type="text" id="subject" required>
+
+        <label>Description</label>
+        <textarea id="description" rows="4" required placeholder="Describe your issue. Mention words like 'urgent' for high priority, or 'payment'/'error' to see auto-categorization."></textarea>
+
+        <label>Attachment (optional, max 10 MB — images, PDF, or plain text)</label>
+        <input type="file" id="attachment" accept="image/png,image/jpeg,image/gif,image/webp,application/pdf,text/plain">
+
+        <button type="submit">Submit Ticket</button>
+        <p id="submitStatus"></p>
+      </form>
+    </div>
+
+    <div class="panel">
+      <h2>Notification Preferences</h2>
+      <p style="font-size: 13px; color: #555;">Click Refresh in My Tickets below with your Customer ID entered to load your saved preference here.</p>
+      <p id="preferenceCustomerLabel" style="font-size: 13px; color: #888;">No customer loaded yet.</p>
+      <label>
+        <input type="checkbox" id="notifyByEmailCheckbox" checked disabled>
+        Send me email notifications about my tickets
+      </label>
+      <button id="savePreferenceBtn" style="margin-top: 10px;" disabled>Save Preference</button>
+      <p id="preferenceStatus"></p>
+    </div>
+  </div>
+
+  <div class="panel panel-full">
+    <h2>My Tickets</h2>
+    <label>Your Customer ID (demo: use cust-1 or cust-2)</label>
+    <input type="text" id="myTicketsCustomerId" placeholder="e.g. cust-1">
+    <button id="refreshCustomerTickets">Refresh</button>
+    <div id="customerTicketList" class="ticket-list"></div>
+  </div>
+</section>
+
+<!-- ADMIN VIEW (login-gated: Agent Dashboard + Analytics) -->
+<section id="adminView" style="display:none;">
+
+  <!-- Login form — shown until an admin logs in -->
+  <div class="panel" id="adminLoginPanel" style="max-width: 400px;">
+    <h2>Admin Login</h2>
+    <p style="font-size: 13px; color: #555;">Log in with any one of the 3 admin accounts. All new tickets will be routed to whichever admin is currently logged in.</p>
+    <form id="adminLoginForm">
+      <label>Email</label>
+      <input type="email" id="adminEmail" required placeholder="e.g. suresh@support.com">
+
+      <label>Password</label>
+      <input type="password" id="adminPassword" required>
+
+      <button type="submit">Log In</button>
+      <p id="adminLoginStatus"></p>
+    </form>
+  </div>
+
+  <!-- Admin dashboard — shown only after successful login -->
+  <div id="adminDashboard" style="display:none; width: 100%;">
+    <div class="panel panel-full admin-bar">
+      <span id="adminWelcome"></span>
+      <button id="btnAdminLogout">Log Out</button>
+      <div class="admin-subtabs">
+        <button id="btnAdminTickets" class="active">Tickets</button>
+        <button id="btnAdminAnalytics">Analytics</button>
+      </div>
+    </div>
+
+    <div class="panel panel-full" id="adminTicketsPanel">
+      <h2>All Tickets (Agent Dashboard)</h2>
+      <button id="refreshAgentTickets">Refresh</button>
+      <div class="stats" id="statsBar"></div>
+      <div id="agentTicketList" class="ticket-list"></div>
+    </div>
+
+    <div class="panel panel-full" id="ticketDetailPanel" style="display:none;">
+      <h2>Ticket Detail</h2>
+      <div id="ticketDetail"></div>
+    </div>
+
+    <div class="panel panel-full" id="adminAnalyticsPanel" style="display:none;">
+      <h2>Support Analytics</h2>
+      <button id="refreshAnalytics">Refresh</button>
+      <div id="analyticsContent">Loading...</div>
+    </div>
+  </div>
+</section>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

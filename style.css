@@ -1,0 +1,312 @@
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+  color: #222;
+}
+
+header {
+  background: #0078d4;
+  color: white;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+header h1 { font-size: 20px; margin: 0; }
+
+.view-toggle button {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid white;
+  color: white;
+  padding: 8px 16px;
+  margin-left: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.view-toggle button.active {
+  background: white;
+  color: #0078d4;
+  font-weight: bold;
+}
+
+section {
+  padding: 24px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.panel {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  flex: 1;
+  min-width: 320px;
+}
+
+/* Customer View: Submit Ticket + Notification Preferences share a row,
+   My Tickets sits full-width below. */
+#customerView {
+  flex-direction: column;
+}
+
+.customer-top-row {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.customer-top-row .panel {
+  flex: 1;
+  min-width: 320px;
+}
+
+.panel-full {
+  width: 100%;
+}
+
+.panel-full input#myTicketsCustomerId {
+  max-width: 280px;
+  display: inline-block;
+}
+
+/* Admin view: login-gated Agent Dashboard + Analytics */
+#adminView {
+  flex-direction: column;
+}
+
+.admin-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+#adminWelcome {
+  font-weight: 600;
+  color: #0078d4;
+}
+
+#btnAdminLogout {
+  background: #e8e8e8;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+#btnAdminLogout:hover { background: #d8d8d8; }
+
+.admin-subtabs {
+  display: flex;
+  gap: 8px;
+}
+
+.admin-subtabs button {
+  background: #f0f6ff;
+  border: 1px solid #cfe2ff;
+  color: #0078d4;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.admin-subtabs button.active {
+  background: #0078d4;
+  color: white;
+  border-color: #0078d4;
+}
+
+.delete-ticket-btn {
+  background: #d9363e;
+  color: white;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.delete-ticket-btn:hover { background: #b02a30; }
+
+#deleteTicketDetailBtn {
+  margin-top: 16px;
+  margin-left: 10px;
+  padding: 10px 18px;
+  font-size: 14px;
+}
+
+form label {
+  display: block;
+  margin-top: 12px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+button {
+  cursor: pointer;
+}
+
+form button, #refreshCustomerTickets, #refreshAgentTickets, #refreshAnalytics {
+  margin-top: 16px;
+  background: #0078d4;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+form button:hover, #refreshCustomerTickets:hover, #refreshAgentTickets:hover, #refreshAnalytics:hover {
+  background: #005ea6;
+}
+
+#submitStatus { margin-top: 10px; font-size: 14px; }
+
+.ticket-list { margin-top: 16px; }
+
+.ticket-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: box-shadow 0.15s;
+}
+
+.ticket-card:hover { box-shadow: 0 2px 6px rgba(0,0,0,0.12); }
+
+.ticket-card h3 { margin: 0 0 6px 0; font-size: 15px; }
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: bold;
+  margin-right: 6px;
+}
+
+.badge.Open { background: #fff4ce; color: #8a6d00; }
+.badge.InProgress { background: #cce4ff; color: #004a99; }
+.badge.Resolved { background: #d4f4dd; color: #1b7a3d; }
+.badge.Escalated { background: #ffd6d6; color: #a30000; }
+
+.badge.High { background: #ffdada; color: #a30000; }
+.badge.Normal { background: #e8e8e8; color: #555; }
+.badge.Low { background: #e8f4fd; color: #0078d4; }
+
+.stats {
+  display: flex;
+  gap: 16px;
+  margin: 16px 0;
+  flex-wrap: wrap;
+}
+
+.stat-box {
+  background: #f0f6ff;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.stat-box .num { font-size: 20px; font-weight: bold; display: block; }
+
+#ticketDetail label { font-weight: 600; display: block; margin-top: 12px; font-size: 13px; }
+
+#ticketDetail select, #ticketDetail input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.comment {
+  background: #f7f7f7;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.comment .meta { color: #777; font-size: 11px; margin-bottom: 4px; }
+
+/* Analytics view */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.analytics-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.analytics-card h4 { margin: 0 0 10px 0; font-size: 14px; color: #444; }
+
+.breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 4px 0;
+  border-bottom: 1px solid #eee;
+}
+
+table.agent-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+table.agent-table th, table.agent-table td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+table.agent-table th { background: #f0f6ff; }
+
+.rating-stars button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.rating-stars.rated {
+  color: #555;
+  font-size: 14px;
+}
+
+.stars-readonly {
+  color: #f5a623;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
